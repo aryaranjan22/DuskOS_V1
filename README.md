@@ -1,12 +1,9 @@
 # AuraOS_V1
 
-A light, web-based operating system simulation.
+This is a lightweight operating system simulator built on the web. 
 
-### 🚀 Overview
-This project features a minimalist, web-accessible user interface inspired by iOS. It is my very first attempt at building an OS simulation, developed during a 3-to-4-hour sprint. 
+The user interface features a very basic menu system inspired by iOS. This is my very first attempt at a project like this, put together in about 3 to 4 hours. 
 
-### 🔧 Current Status
-* **Interface:** Features a basic, iOS-style layout and menu structure.
-* **Functionality:** App launching is currently non-functional. I am actively working on resolving the logic to ensure applications open correctly.
+Currently, the interface is completely functional but apps do not open yet. I tried to implement app-opening logic, but it is not working quite right. I am still figuring it out. 
 
-*Built for Hack Club—thank you for reviewing my submission!*
+This was made for Hack Club. Please Now accpet this mission its 12AM in night T-T doing since 2PM
