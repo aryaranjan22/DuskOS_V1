@@ -1,0 +1,485 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+:root {
+    --glass: rgba(20,22,32,0.48);
+    --glass-light: rgba(255,255,255,0.08);
+    --border: rgba(255,255,255,0.18);
+    --text: #ffffff;
+    --mutes: rgba(255,255,255,0.5);
+    --purple: #9b59b6;
+    --blue: #3498db;
+}
+body {
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+    background: #050509;
+    color: var(--text);
+    font-family: Inter, "Segoe UI", Arial, sans-serif;
+}
+#boot-screen {
+    position: fixed;
+    inset: 0;
+    z-index: 10;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background: radial-gradient(
+        circle at center,
+        rgba(99, 102, 241, 0.15),
+        transparent 35%
+    ), #050509;
+    transition: opacity 1s ease, visibility 1s ease;
+}
+#boot-screen.hidden {
+    opacity: 0;
+    visibility: hidden;
+}
+.aura-logo {
+    width:  86px;
+    height:  86px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 26px;
+    font-size: 42px;
+    font-weight: 800;
+    background:
+    linear-gradient(
+        135deg,
+        var(--purple),
+        var(--blue)
+    );
+    box-shadow:
+    0 0 30px rgba(139, 92, 246, 0.45),
+    0 0 80px rgba(99, 102, 241, 0.18);
+    animation: logoPulse 2s infinite ease-in-out;
+}
+@keyframes logoPulse {
+    0%, 100% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.04);
+    }
+}
+#boot-screen h1 {
+    margin-top: 8px;
+    color: var(--mutes);
+    font-size: 32px;
+    overflow: hidden;
+    border-radius: 10px;
+    background: rgba(255, 255, 255, 0.08);
+
+}
+#loading-track {
+    width: 230px;
+    height: 4px;
+    margin-top: 32px;
+overflow: hidden;
+border-radius: 10px;
+background: rgba(255, 255, 255, 0.08);
+}
+#loading-bar {
+    width: 0%;
+    height: 100%;
+border-radius: inherit;
+background: rgba(139, 92, 246, 0.7);
+box-shadow: 0 0 15 rgba(139, 92, 246, 0.7);
+transition:  width 0.15s ease;
+}
+#desktop {
+    position: fixed;
+    inset: 0;
+    opacity: 0;
+    transition: opacity 1.2s ease;
+    background-image: url(wallpaper.png);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+#desktop.ready {
+    opacity: 1;
+}
+.wallpaper-overlay {
+    position: absolute;
+    inset: 0;
+    background:
+    linear-gradient(
+        180deg,
+        rgba(0,0,0,0.22),
+        rgba(0,0,0,0.22) 40%,
+        rgba(0,0,0,0.22)
+    );
+    pointer-events: none;
+}
+.top-bar {
+    position:  absolute;
+    top: 22px;
+    left: 28px;
+    right: 28px;
+    display: flex;
+    justify-content:  space-between;
+    align-items:  center;
+    z-index: 5;
+}
+.brand {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 8px, 14px, 8px, 8px;
+    border-radius: 15px;
+    background: rgba(15,15,15,22,0.35);
+    border: 1px solid var(--border);
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+}
+.mini-logo {
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    border-radius: 10px;
+    font-weight: 800;
+    background:
+    linear-gradient(
+        135deg,
+        var(--purple),
+        var(--blue)
+    );
+}
+.brand span {
+    font-weight: 600;
+    letter-spacing:  9px 14px;
+    text-align: right;
+    border-radius: 15px;
+    background: rgba(15,15,22,0.35);
+    border: 1px solid var(--border);
+backdrop-filter: blur(18px);
+-webkit-backdrop-filter: blur (18px);
+}
+.clock {
+    padding: 9px 14px;
+    text-align: right;
+    border-radius: 15px;
+    background: rgba(15,15,22,0.35);
+    border: 1px solid var(--blue);
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+}
+.clock small {
+    display: block;
+    margin-top: 2px;
+    color: var(--muted);
+    font-size: 10px;
+}
+.desktop-icons {
+    position: absolute;
+    top: 100px;
+    left: 28px;
+    z-index: 4;
+    display:  flex;
+    flex-direction: column;
+    gap: 8px;
+}
+.desktop-icon {
+    width:  80px;
+    padding: 12px 6px;
+    border: 0;
+    border-radius: 15px;
+    color: white;
+    background: transparent;
+    cursor: pointer;
+    transition: 
+    background 0.25 ease,
+    transform 0.25 ease;
+}
+.desktop-icon:hover {
+    background: rgba(255,255,255,0.10);
+    transform: translateY(-2px);
+}
+.app-icon {
+width:48px;
+height: 48px;
+margin: auto;
+display: flex;
+justify-content: center;
+align-items: center;
+border-radius: 15px;
+font-size: 22px;
+background: rgba(20,20,30,0.12);
+border: 1px solid rgba(255,255,255,0.12);
+backdrop-filter: blur(15px);
+}
+.desktop-icon span {
+    display: block;
+    margin-top: 7px;
+    font-size: 11px;
+    text-shadow: 0 2px 8px black;
+}
+.taskbar {
+    left: 50%;
+    bottom: 20px;
+    transform: translateX(-50%);
+    width: min(720px, calc(100vw - 30px));
+    height: 64px;
+    z-index: 10;
+    display:  flex;
+    align-items: center;
+    padding:  7px 10px;
+    gap: 7px;
+    background:
+    rgba(14, 15,22,0.52);
+    border: 1px solid var (--border);
+    backdrop-filter: blur(28px) saturate(150%);
+    -webkit-backdrop-filter: blur(28px)saturate(150%);
+    box-shadow:
+    0 20px 60px rgba(0,0,0,0.35),
+    inset 0 1px 0 rgba(255, 255, 255, 0.08);
+}
+.aura-button {
+    width: 48px;
+    height: 48px;
+    flex-shrink: 0;
+    border: 0;
+    border-radius: 15px;
+    color: white;
+    font-size: 20px;
+    font-weight: 800;
+    cursor: pointer;
+    background: 
+    -o-linear-gradient(
+        135deg,
+        var(--purple),
+        var(--blue)
+    );
+    box-shadow: 
+    0 0 25px rgba(124,92,246,0.25);
+    transition:
+    transform 0.25s ease,
+    box-shadow 0.25s ease;
+}
+.aura-button:hover {
+    transform: scale(1.07);
+    box-shadow: 
+    0 0 35px rgba (124,92,246,0.5);
+}
+.taskbar-divider {
+    height: 30;
+    width: 30px;
+    margin: 0 5px;
+    background: rgba(255,255,255,0.12);
+}
+.task-icon {
+    width: 44px;
+    height: 44px;
+    border: 0;
+    border-radius: 13px;
+    background: transparent;
+    color: white;
+    font-size: 20px;
+    cursor: pointer;
+    transition: 
+    background 0.2s
+    transform 0.2s;
+}
+.task-icon:hover {
+    background: rgba(255, 255, 255, 0.09);
+    transform: translateY(-2px);
+}
+.taskbar-spacer {
+    flex: 1;
+}
+.system-info {
+    display: flex;
+    gap: 11px;
+    padding: 0 12;
+    color: rgba(255, 255, 255, 0.65);
+    font-size: 13px;
+}
+    /*================================
+    Finally the Menu I waited to code
+    ================================*/
+#aura-menu {
+    position: absolute;
+    left: 50%;
+    bottom: 96px;
+    width: 460px;
+    max-width: calc(100vw - 30px);
+    padding: 24px;
+    z-index: 20;
+    border-radius: 25px;
+    background: 
+    linear-gradient(
+        135deg,
+        rgba(25,25,38,0.72),
+        rgba(12,13,20,0.62)
+    );
+    border: 1px solid rgba(20,20,30,0.13);
+    backdrop-filter: 
+    blur(35px)
+    saturate(157%);
+    -webkit-backdrop-filter: 
+    blur(35px)
+    saturate(160%);
+    box-shadow: 
+    0 30px 90px rgba(0,0,0,0.5),
+    inset 0 1px 0 rgba(255, 255, 255, 0.08);
+    opacity: 0;
+    visibility:  hidden;
+    transform:
+    translate(-50%, 15px)
+    scale(0.96);
+    transition:
+    opacity 0.25s ease,
+    transform 0.3s cubic-bezier(.2,.8,.2,.1),
+    visibility 0.25s;
+}
+#aura-menu.open {
+    opacity: 1;
+    visibility: visible;
+    transform: 
+    translate(-50%, 0);
+    scale: (1);
+}
+.menu-glow {
+    position: absolute;
+    width: 180;
+    height: 180px;
+    top: -80px;
+    right: -60px;
+    border-radius: 52%;
+    background:
+    rgba(124,92,246,0.20);
+    filter: blur(60px);
+    pointer-events: none;
+}
+.menu-header {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 14px
+}
+.menu-logo {
+    width: 50px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 23px;
+    font-weight: 800;
+    background: 
+    linear-gradient(
+        135deg,
+        var(--purple),
+        var(--blue)
+    );
+    box-shadow:
+    0 0 25px rgba(124,92,246,0.32);
+}
+.menu-header p {
+    margin-top: 3px;
+    color: var(--blue);
+    font-size: 11px;
+}
+.search {
+    position: relative;
+    display: flex;
+    gap: 10px;
+    padding: 12px 13px;
+    border-radius: 14;
+    background:
+    rgba(255,255,255,0.55);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+}
+.search psan {
+    color: rgba(255, 255, 255, 0.055);
+    font-size: 20px;
+}
+.search-input {
+    width: 100%;
+    outline: none;
+    background: transparent;
+    color: white;
+    font-size: 13px;
+}
+.search-input::placeholder {
+    color: rgba(255, 255, 255, 0.035);
+}
+.search kbd{
+padding: 3px 6px;
+border-radius: 6px;
+color: rgba(255, 255, 255, 0.35);
+background: rgba(255,255,255,0.06);
+font-size: 9px;
+}
+.section-label {
+    margin-top: 23px;
+    margin-bottom: 10px;
+    color: rgba(255, 255, 255, 0.035);
+    font-size: 9px;
+    letter-spacing: 1.5px;
+}
+.menu-apps {
+    display: grid;
+    grid-template-columns:
+    repeat(4,1fr);
+    gap: 8px;
+}
+.menu-app button {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    padding: 13px, 8px;
+    border: 0;
+    color: white;
+    background: transparent;
+    cursor: pointer;
+    font-size: 10px;
+    transition: 
+    background 0.2s
+    transform 0.2s;
+}
+.menu-app button:hover {
+    background: rgba(255, 255, 255, 0.07);
+    transform: translateY(-2px);
+}
+.menu-apps button span {
+    width: 38px;
+    height: 38px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 12px;
+    background: 
+    rgba(255, 255, 255, 0.07);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    font-size: 18px;
+}
+.menu-bottom {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 22px;
+    padding-top:15px;
+    border-top: 
+    1px solid rgba(255, 255, 255, 0.07);
+    font-size: 9px;
+}
+@media (max-width: 600px) {
+    .system-info {
+        display: none;
+
+    }
+    .taskbar {
+        width: calc(100vw-24px);
+    }
+    #aura-menu {
+        width: calc(100vw-24px);
+    }
+    
+}
