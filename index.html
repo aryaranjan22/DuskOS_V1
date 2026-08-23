@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
+
+  <title>duskOS</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Manrope:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap"
+    rel="stylesheet"
+  >
+
+  <link
+    rel="stylesheet"
+    href="style.css"
+  >
+</head>
+
+<body>
+
+  <!-- BOOT -->
+
+  <div id="boot">
+
+    <div class="logo">
+      <span class="dot"></span>
+      duskOS
+    </div>
+
+    <div class="bar">
+      <i></i>
+    </div>
+
+  </div>
+
+  <!-- DESKTOP -->
+
+  <div id="desktop">
+
+    <div class="sun"></div>
+
+  </div>
+
+  <!-- DESKTOP ICONS -->
+
+  <div id="desktop-icons">
+
+    <div
+      class="dicon"
+      data-open="finder"
+    >
+      <div class="glyph g-finder">
+        🗂️
+      </div>
+
+      <span>
+        Files
+      </span>
+    </div>
+
+    <div
+      class="dicon"
+      data-open="about"
+    >
+      <div class="glyph g-about">
+        💾
+      </div>
+
+      <span>
+        About This Mac
+      </span>
+    </div>
+
+  </div>
+
+  <!-- MENU BAR -->
+
+  <div id="menubar">
+
+    <div class="left">
+
+      <div class="logo">
+        <span class="dot"></span>
+        duskOS
+      </div>
+
+      <div
+        class="menuitem active"
+        id="active-app-name"
+      >
+        Finder
+      </div>
+
+      <div class="menuitem">
+        File
+      </div>
+
+      <div class="menuitem">
+        Edit
+      </div>
+
+      <div class="menuitem">
+        View
+      </div>
+
+    </div>
+
+    <div class="right">
+
+      <div
+        class="icon-btn"
+        title="Wi-Fi"
+      >
+        📶
+      </div>
+
+      <div
+        class="icon-btn"
+        title="Battery"
+      >
+        🔋
+      </div>
+
+      <div
+        class="icon-btn"
+        id="cc-toggle"
+        title="Control Center"
+      >
+        ⚙️
+      </div>
+
+      <div id="clock">
+        Sun 23 Aug&nbsp;&nbsp;12:00 PM
+      </div>
+
+    </div>
+
+  </div>
+
+  <!-- CONTROL CENTER -->
+
+  <div id="control-center">
+
+    <div class="cc-row">
+
+      <div
+        class="cc-tile appearance-switch"
+        id="cc-appearance-toggle"
+      >
+
+        <span class="t-label">
+          Appearance
+        </span>
+
+        <span class="t-value appearance-value">
+          Dusk
+        </span>
+
+      </div>
+
+      <div
+        class="cc-tile"
+        id="wifi-tile"
+      >
+
+        <span class="t-label">
+          Wi-Fi
+        </span>
+
+        <span class="t-value">
+          Connected
+        </span>
+
+      </div>
+
+    </div>
+
+    <div class="cc-slider-wrap">
+
+      <div class="t-label">
+        Brightness
+      </div>
+
+      <input
+        class="cc-slider"
+        type="range"
+        id="brightness"
+        min="40"
+        max="130"
+        value="100"
+      >
+
+    </div>
+
+    <div class="cc-slider-wrap">
+
+      <div class="t-label">
+        Sound
+      </div>
+
+      <input
+        class="cc-slider volume-slider"
+        type="range"
+        id="volume"
+        min="0"
+        max="100"
+        value="60"
+      >
+
+    </div>
+
+  </div>
+
+  <!-- DYNAMIC ISLAND -->
+
+  <div id="island">
+
+    <div class="pulse"></div>
+
+    <div
+      class="island-time"
+      id="island-time"
+    >
+      12:00
+    </div>
+
+    <div class="island-body">
+
+      <div class="search-row">
+
+        <input
+          id="spotlight-input"
+          type="text"
+          placeholder="Search apps, or try 12*4 …"
+          autocomplete="off"
+        >
+
+        <span class="kbd">
+          esc
+        </span>
+
+      </div>
+
+      <div id="spotlight-results"></div>
+
+    </div>
+
+  </div>
+
+  <!-- WINDOWS -->
+
+  <div id="windows-layer"></div>
+
+  <!-- DOCK -->
+
+  <div id="dock-wrap">
+
+    <div id="dock">
+
+      <div
+        class="dock-item g-finder"
+        data-app="finder"
+      >
+        <span>🗂️</span>
+        <div class="tip">Finder</div>
+        <div class="dot"></div>
+      </div>
+
+      <div
+        class="dock-item g-notes"
+        data-app="notes"
+      >
+        <span>📝</span>
+        <div class="tip">Notes</div>
+        <div class="dot"></div>
+      </div>
+
+      <div
+        class="dock-item g-term"
+        data-app="term"
+      >
+        <span>▮</span>
+        <div class="tip">Terminal</div>
+        <div class="dot"></div>
+      </div>
+
+      <div
+        class="dock-item g-calc"
+        data-app="calc"
+      >
+        <span>🧮</span>
+        <div class="tip">Calculator</div>
+        <div class="dot"></div>
+      </div>
+
+      <div
+        class="dock-item g-music"
+        data-app="music"
+      >
+        <span>🎧</span>
+        <div class="tip">Vibes</div>
+        <div class="dot"></div>
+      </div>
+
+      <div
+        class="dock-item g-weather"
+        data-app="weather"
+      >
+        <span>🌤️</span>
+        <div class="tip">Weather</div>
+        <div class="dot"></div>
+      </div>
+
+      <div class="dock-sep"></div>
+
+      <div
+        class="dock-item g-settings"
+        data-app="settings"
+      >
+        <span>⚙️</span>
+        <div class="tip">Settings</div>
+        <div class="dot"></div>
+      </div>
+
+      <div
+        class="dock-item g-about"
+        data-app="about"
+      >
+        <span>💾</span>
+        <div class="tip">About This Mac</div>
+        <div class="dot"></div>
+      </div>
+
+    </div>
+
+  </div>
+
+  <script src="script.js"></script>
+
+</body>
+
+</html>
