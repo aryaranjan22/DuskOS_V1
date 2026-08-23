@@ -1,4 +1,5 @@
-# AuraOS_V1
+# DuskOS_V1
+
 
 This is a lightweight operating system simulator built on the web. 
 
